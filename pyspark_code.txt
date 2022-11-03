@@ -1,0 +1,21 @@
+import pyspark
+from pyspark.sql import SparkSession
+
+spark = SparkSession.builder.getOrCreate()
+
+from pyspark.sql.functions import split,expr,col
+
+input = [("Rohit, Sharma",50,20.1), 
+        ("Virat, Kohli",20,40.34), 
+        ("Hardik, Pandya",30,34.1), 
+        ("Surya, Kumar",80,45.1) ,
+         ("Surya, Kumar",100,45.1)
+      ]
+
+# "Rohit, Sharma"
+# ["rohit","sharma"]
+
+schema = ["player_name","Score","avg"]
+
+input_df = spark.createDataFrame(data = input, schema = schema)
+input_df.show()
